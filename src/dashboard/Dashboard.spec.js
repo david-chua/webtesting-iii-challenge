@@ -16,6 +16,23 @@ describe('<Dashboard />', () => {
     const { getByText, queryByText } = render(<Dashboard />);
     getByText(/unlocked/i);
     getByText(/open/i);
+    getByText(/Close gate/i);
+    getByText(/Lock gate/i);
 
   })
+
+  it('gate cannot be closed or opened if locked', () => {
+    const { getByText, queryByText } = render(<Dashboard />);
+
+    const closeGateButton = getByText(/close gate/i);
+    fireEvent.click(closeGateButton);
+
+    const lockGateButton = getByText(/lock gate/i);
+    fireEvent.click(lockGateButton);
+
+    expect(queryByText(/Locked/i)).toBeTruthy();
+    expect(queryByText(/Closed/i)).toBeTruthy();
+  })
+
+
 })
