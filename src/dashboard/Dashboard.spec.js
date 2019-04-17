@@ -30,6 +30,11 @@ describe('<Dashboard />', () => {
     const lockGateButton = getByText(/lock gate/i);
     fireEvent.click(lockGateButton);
 
+    const openGateButton = getByText(/open gate/i);
+    fireEvent.click(openGateButton);
+
+    fireEvent.click(closeGateButton);
+
     expect(queryByText(/Locked/i)).toBeTruthy();
     expect(queryByText(/Closed/i)).toBeTruthy();
   })
